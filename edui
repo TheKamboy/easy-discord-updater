@@ -15,25 +15,6 @@ install_discord() {
 
   rm /tmp/edu-discord.tar.gz
   gum spin --spinner "line" --title "Getting the latest version of Discord..." --show-output -- wget -4 "https://discord.com/api/download?platform=linux&format=tar.gz" -O /tmp/edu-discord.tar.gz
-
-  rm -rf /tmp/edu-discord-bin
-  mkdir /tmp/edu-discord-bin
-  gum spin --spinner "dot" --title "Extracting Discord..." --show-output -- tar -xzf /tmp/edu-discord.tar.gz -C /tmp/edu-discord-bin
-
-  mkdir -p "$HOME/.local/share/applications/"
-
-  gum spin --spinner "minidot" --title "Moving to your local directory..." --show-output -- mv /tmp/edu-discord-bin "$HOME/.local/share/edu-discord-bin"
-
-  gum spin --spinner "hamburger" --title "Moving Launcher to local applications..." --show-output -- mv "$HOME/.local/share/edu-discord-bin/Discord/discord.desktop" "$HOME/.local/share/applications/discord.desktop"
-
-  gum spin --spinner "pulse" --title "Adding Discord to Path..." --show-output -- echo 'export PATH="$HOME/.local/share/edu-discord/Discord/:$PATH"' >> "$HOME/.profile"
-
-  mkdir -p "$HOME/.local/bin"
-  gum spin --spinner "moon" --title "Installing command to update Discord..." --show-output -- wget -4 "https://discord.com/api/download?platform=linux&format=tar.gz" -O "$HOME/.local/bin/edui"
-
-  gum style --border double --margin "1" --padding "1 2" --border-foreground "#7289da" "Done!"
-  
-  echo ""
 }
 
 if ! which wget; then
@@ -60,7 +41,7 @@ if ! which gum; then
 
     mv gum_0.13.0_Linux_x86_64.tar.gz /tmp/
 
-    mkdir -p /tmp/gumcli
+    mkdir /tmp/gumcli
 
     tar -xzf /tmp/gum_0.13.0_Linux_x86_64.tar.gz -C /tmp/gumcli
 
@@ -84,16 +65,4 @@ fi
 clear
 gum style --border double --margin "1" --padding "1 2" --border-foreground "#7289da" "Easy-Discord-Updater Installer"
 
-option=$(gum choose "Install" "Quit Installer")
-
-case $option in
-  "Quit Installer")
-    gum spin --title "Bye!" sleep 2
-    clear
-    remove_gumcli_folder
-    exit 0
-    ;;
-  "Install")
-    install_discord
-    ;;
-esac
+option=$(gum choose "Install" "Configure Install" "Quit Installer")
