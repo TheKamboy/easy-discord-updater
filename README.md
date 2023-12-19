@@ -1,3 +1,5 @@
+# I'm a dumbass I should've just used the AUR
+
 # Easy Discord Updater (for Linux)
 
 > [!NOTE]
