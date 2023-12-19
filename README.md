@@ -9,4 +9,4 @@ Then check out my project here, because you are in the same boat as me!
 
 ## How to install
 
-idk yet wait til this is done
+Run this command in your Linux Terminal: `sh -c "$(wget https://raw.githubusercontent.com/TheKamboy/easy-discord-updater/master/install.sh -O -)"`
