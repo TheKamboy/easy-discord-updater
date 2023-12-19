@@ -29,11 +29,16 @@ install_discord() {
   gum spin --spinner "pulse" --title "Adding Discord to Path..." --show-output -- echo 'export PATH="$HOME/.local/share/edu-discord/Discord/:$PATH"' >> "$HOME/.profile"
 
   mkdir -p "$HOME/.local/bin"
-  gum spin --spinner "moon" --title "Installing command to update Discord..." --show-output -- wget -4 "https://discord.com/api/download?platform=linux&format=tar.gz" -O "$HOME/.local/bin/edui"
+  gum spin --spinner "moon" --title "Installing command to update Discord..." --show-output -- wget -4 "https://raw.githubusercontent.com/TheKamboy/easy-discord-updater/master/edui" -O "$HOME/.local/bin/edui"
 
   gum style --border double --margin "1" --padding "1 2" --border-foreground "#7289da" "Done!"
   
+  echo "Make sure you have \".local/bin\" added to your PATH."
   echo ""
+  echo "Also, you can update Discord by running \"edui\" in your terminal, if you have \".local/bin\" added to your PATH."
+  echo ""
+  remove_gumcli_folder
+  exit 0
 }
 
 if ! which wget; then
